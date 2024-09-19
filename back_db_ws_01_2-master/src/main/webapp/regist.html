@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>영화정보사이트</title>
+<style>
+	label {
+		display: inline-block;
+		width: 80px;
+	}
+</style>
+</head>
+<body>
+	<h1>SSAFY 영화 관리</h1>
+	<form method="post" action="main">
+		<fieldset>
+		<!-- <fieldset> 태그는 <form> 요소에서 연관된 요소들을 하나의 그룹으로 묶을 때 사용 -->
+		<!-- <fieldset> 요소는 하나의 그룹으로 묶은 요소들 주변으로 박스 모양의 선을 그려준다 -->
+		<legend>영화 정보 입력</legend>
+		<input type="hidden" name="action" value="regist"> 
+		<!-- <input type=“hidden”>은 사용자에게는 보이지 않는 숨겨진 입력 필드를 정의 -->
+		<!-- servlet에서 getParameter("action")을 통해서 action 파라미터를 추출해서 regist인 경우 regist 메소드를 수행하게 됨  -->
+		<label for="title">제목</label>
+		<input type="text" id="title" name="title"><br> <!-- <label> 태그의 for 속성은 라벨(label)과 결합될 요소를 명시, 값으로 요소id을 준다 -->
+		<label for="director">감독</label>
+		<input type="text" id="director" name="director"><br> <!-- <label> 태그의 for 속성은 라벨(label)과 결합될 요소를 명시, 값으로 요소id을 준다 -->
+		<label for="genre">장르</label>	
+		<input type="text" id="genre" name="genre"><br> <!-- <label> 태그의 for 속성은 라벨(label)과 결합될 요소를 명시, 값으로 요소id을 준다 -->
+		<label for="runningTime">상영 시간</label>	
+		<input type="text" id="runningTime" name="runningTime"><br> <!-- <label> 태그의 for 속성은 라벨(label)과 결합될 요소를 명시, 값으로 요소id을 준다 -->	
+		<input type="submit" value="등록">
+		<input type="reset" value="초기화">
+		</fieldset>
+	</form>
+</body>
+</html>
