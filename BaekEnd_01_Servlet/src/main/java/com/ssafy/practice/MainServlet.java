@@ -31,6 +31,7 @@ public class MainServlet extends HttpServlet {
 		case "regist":
 			// 등록하는 작업 (메소드로 빼서 사용 가능)
 			// 인간에 대한 정보가 요청 통로 안에 몽땅 들어있다.
+			regist(req, resp);
 			break;
 		case "gugu" :
 			// 구구단을 하는 작업 (메소드로 빼서 사용 가능)
@@ -59,6 +60,25 @@ public class MainServlet extends HttpServlet {
 			break;
 		}
 
+	}
+
+	private void regist(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+		// 인간에 대한 정보가 요청 통로 안에 몽땅 들어있다.
+		String name = req.getParameter("name");
+		int age = Integer.valueOf(req.getParameter("age"));
+		String gender = req.getParameter("gender");
+		String[] hobbys = req.getParameterValues("hobby");
+		Person person = new Person(name, age, gender, hobbys);
+		
+		PrintWriter writer = resp.getWriter();
+		writer.write("<html>");
+		writer.write("<head>");
+		writer.write("<title>사람가입 성공</title>");
+		writer.write("</head>");
+		writer.write("<body>");
+		writer.write(person.toString());
+		writer.write("</body>");
+		writer.write("</html>");
 	}
 
 	private void gugu(HttpServletRequest req, HttpServletResponse resp) throws IOException {
