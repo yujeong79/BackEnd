@@ -11,7 +11,8 @@
 <body>
 	<h1>사용자 목록</h1>
 	<%
-		List<Person> list = (List<Person>) request.getAttribute("list");
+		/* List<Person> list = (List<Person>) request.getAttribute("list"); */
+		List<Person> list = PersonManager.getInstance().getList();
 		if(list == null || list.size() == 0) { // 등록된 사용자가 없으면
 			out.print("등록된 사용자가 없습니다. <br/>");
 		} else {
