@@ -21,7 +21,7 @@
 		<%-- 
 			Q. 로그인 정보가 없는 경우 로그인 폼을 출력해 봅시다.
 		--%>
-		<c:when test="${session.loginUser != null}">
+		<c:when test="${sessionScope.loginUser == null}">
 		
 			<form action="login" method="post">
 				
