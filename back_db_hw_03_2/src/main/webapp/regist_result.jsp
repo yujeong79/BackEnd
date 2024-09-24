@@ -36,7 +36,7 @@ th:nth-child(1) {
 		<%-- session에서 loginUser를 가져와서 존재 여부에 따라 로그인 폼 또는 사용자 정보를 출력한다. --%>
 		<%
 		// session에서 user 객체 가져오기
-		Object userObj = session.getAttribute("user");
+		Object userObj = session.getAttribute("loginUser");
 		// null 인지 검사후 User 로 타입 변환
 		User user = userObj == null ? null : (User) userObj;
 		// 로그인 정보가 없을 경우는 로그인을 위한 폼을 제공한다.
