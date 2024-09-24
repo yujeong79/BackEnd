@@ -27,8 +27,8 @@
 <hr>
 <script>
 	// request 영역에 msg라는 이름의 attribute가 있다면 화면에 alert으로 출력한다.
-	/* let msg = "_____";
+	let msg = "${msg}";
 	if (msg) {
 		alert(msg)
-	} */
+	} 
 </script>
