@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <title>SSAFY 교육생 관리</title>
 </head>
-<body>
-	<h1>교육생 상세 정보</h1>
+<body> 
+	<h1>교육생 상세 정보 깃 수정</h1>
 		<p>아이디 : ${student.id}</p>
 		<p>이름 : ${student.name}</p>
 		<p>성별 : ${student.gender }</p>
