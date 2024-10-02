@@ -39,6 +39,7 @@ public class MainServlet extends HttpServlet{
 		case "regist":
 			doRegist(request, respond);
 			break;
+<<<<<<< HEAD
 		case "login":
 			doLogin(request, respond);
 			break;
@@ -67,6 +68,20 @@ public class MainServlet extends HttpServlet{
 	private void doLogin(HttpServletRequest request, HttpServletResponse respond) {
 		// TODO Auto-generated method stub
 		
+=======
+		case "list":
+			doList(request, respond);
+			break;
+		}
+		
+	}
+
+	private void doList(HttpServletRequest request, HttpServletResponse respond) throws ServletException, IOException {
+		request.setAttribute("movies", movieList);
+		
+		RequestDispatcher disp = request.getRequestDispatcher("/list.jsp");
+		disp.forward(request, respond);
+>>>>>>> refs/remotes/origin/main
 	}
 
 	private void doRegist(HttpServletRequest request, HttpServletResponse respond) throws ServletException, IOException {

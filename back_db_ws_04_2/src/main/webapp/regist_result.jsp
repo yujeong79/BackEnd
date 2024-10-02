@@ -25,5 +25,42 @@ th:nth-child(1) {
 	<c:if test="${sessionScope.movieCount != null}">
 		<h2>지금까지 등록한 영화 수 : ${sessionScope.movieCount}</h2>	
 	</c:if>
+<<<<<<< HEAD
+=======
+	<h2>등록 영화 정보</h2>
+	<c:if test="${requestScope.movie != null}">
+		<table>
+			<thead>
+				<tr>
+					<th>항목</th>
+					<th>내용</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>영화 제목</td>
+					<td>${requestScope.movie.title}</td>
+				</tr>
+				<tr>
+					<td>감독</td>
+					<td>${requestScope.movie.director}</td>
+				</tr>
+				<tr>
+					<td>장르</td>
+					<td>${requestScope.movie.genre}</td>
+				</tr>
+				<tr>
+					<td>상영 시간</td>
+					<td>${requestScope.movie.runningTime}</td>
+				</tr>
+			</tbody>
+		</table>
+	</c:if>
+	<c:if test="${requestScope.movie == null}">
+		<p>등록된 영화 정보가 없습니다.</p>
+	</c:if>
+	<a href="regist.jsp">추가등록</a>
+	<a href="./main?action=list">영화목록</a>
+>>>>>>> refs/remotes/origin/main
 </body>
 </html>
