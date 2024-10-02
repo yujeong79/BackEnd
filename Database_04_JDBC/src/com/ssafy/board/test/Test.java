@@ -1,5 +1,7 @@
 package com.ssafy.board.test;
 
+import java.util.List;
+
 import com.ssafy.board.model.dao.BoardDao;
 import com.ssafy.board.model.dao.BoardDaoImpl;
 import com.ssafy.board.model.dto.Board;
@@ -19,5 +21,16 @@ public class Test {
 		}
 		
 		dao.deleteBoard(1);
+		
+		for(Board b : dao.selectAll()) {
+			System.out.println(b);
+		}
+		
+		dao.updateBoard(new Board(2, "제목수정", "작성자수정", "내용수정", null, 0));
+		System.out.println(dao.selectOne(2));
+		
+		dao.updateViewCnt(2);
+		dao.updateViewCnt(2);
+		System.out.println(dao.selectOne(2));
 	}
 }

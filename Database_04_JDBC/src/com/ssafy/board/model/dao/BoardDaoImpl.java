@@ -1,10 +1,12 @@
 package com.ssafy.board.model.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ssafy.board.model.dto.Board;
@@ -26,8 +28,37 @@ public class BoardDaoImpl implements BoardDao {
 	
 	@Override
 	public List<Board> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Board> list = new ArrayList<>(); // 데이터베이스에서 가져온 각각의 데이터를 여기에 저장하자~
+		
+		// 이제 진짜 데이터베이스 연결도 하고 데이터도 가져오자
+		try {
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ssafy_board?serverTimezone=UTC", "ssafy", "ssafy");
+		
+			Statement stmt = conn.createStatement(); // stmt 객체에 SQL문을 담아서 DBMS에 보내자!
+			
+			String sql = "SELECT * FROM board"; // 게시글을 전체 조회하는 SQL문
+			ResultSet rs = stmt.executeQuery(sql); // sql문의 결과 테이블을 저장
+			
+			while(rs.next()) { // 초기 커서는 Begin of File를 가리킴, 하나씩 데이터를 받아와서 End of File이 되면 종료
+				Board board = new Board(); // 빈 바구니를 하나 생성하자
+				
+				board.setId(rs.getInt("id")); // `id`라는 라벨(컬럼명)로 가져옴
+				board.setWriter(rs.getString("writer"));
+				board.setTitle(rs.getString("title"));
+				board.setContent(rs.getString("content"));
+				board.setViewCnt(rs.getInt("view_cnt"));
+				board.setRegDate(rs.getString("reg_date"));
+				
+				list.add(board);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		return list;
+	
 	}
 
 	@Override
@@ -85,7 +116,7 @@ public class BoardDaoImpl implements BoardDao {
 			
 			int result = pstmt.executeUpdate(); // int형을 반환, 지금 몇개를 건드렸는지가 반환 => 데이터를 몇 개 넣었는지
 			
-			System.out.println(result); // 아~ 너가 데이터 1개를 넣었구나~ 이렇게 알 수 있음
+			//System.out.println(result); // 아~ 너가 데이터 1개를 넣었구나~ 이렇게 알 수 있음
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -118,13 +149,53 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public void updateBoard(Board board) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE board SET title=?, writer=?, content=? WHERE id=?";
+		
+		try {
+			conn = util.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(4, board.getId());
+			
+			pstmt.setString(1, board.getTitle());
+			pstmt.setString(2, board.getWriter());
+			pstmt.setString(3, board.getContent());
+			
+			int result = pstmt.executeUpdate();
+			System.out.println("변경된 행의 개수 : " + result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			util.close(conn, pstmt);
+		}
 		
 	}
 
 	@Override
 	public void updateViewCnt(int id) {
-		// TODO Auto-generated method stub
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE board SET view_cnt=view_cnt+1 WHERE id=?";
+		
+		try {
+			conn = util.getConnection();
+			pstmt = conn.prepareStatement(sql);
+
+			pstmt.setInt(1, id);
+			
+			int result = pstmt.executeUpdate();
+			System.out.println("변경된 행의 개수 : " + result);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			util.close(conn, pstmt);
+		}
 		
 	}
 
