@@ -117,29 +117,39 @@ public class MinkyuDaoImpl implements MinkyuDao {
 	@Override
 	public void updateMinkyu(Minkyu minkyu) {
 		String sql =  "UPDATE minkyu \n"
-					+ "SET name = ?";
+					+ "SET name = ? \n"
+					+ "email = ? \n"
+					+ "WHERE user_id = ?";
 		
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		try {
-			pstmt.setString(1, minkyu.getName());
-			pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			util.close(conn, pstmt);
-		}
-	}
-
-	@Override
-	public void deleteMinkyu(int id) {
-		String sql =  "DELETE from minkyu ";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
 			conn = util.getConnection();
 			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, minkyu.getName());
+			pstmt.setString(2, minkyu.getEmail());
+			pstmt.setInt(3, minkyu.getUserid());
+			pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			util.close(pstmt, conn);
+		}
+	}
 
+	@Override
+	public void deleteMinkyu(int id) {
+		String sql =  "DELETE from minkyu \n"
+					+ "WHERE user_id = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		try {
+			conn = util.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

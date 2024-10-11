@@ -22,8 +22,8 @@
         </tr>
     </table>
     
-    <a href="minsseam?action=updateform">수정</a>
-    <a href="minsseam?action=delete">삭제</a>
+    <a href="minsseam?action=updateform&id=${minkyu.userid}">수정</a>
+    <a href="minsseam?action=delete&id${minkyu.userid}">삭제</a>
     <a href="minsseam?action=list">목록</a>
 </body>
 </html>
