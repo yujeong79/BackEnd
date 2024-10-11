@@ -91,6 +91,8 @@ public class MinkyuController extends HttpServlet {
 		minkyu.setName(request.getParameter("name"));
 		minkyu.setEmail(request.getParameter("email"));
 		
+		service.changeMinkyu(minkyu);
+		
 		response.sendRedirect("minsseam?action=detail");
 	}
 
