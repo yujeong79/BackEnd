@@ -93,7 +93,7 @@ public class MinkyuController extends HttpServlet {
 		
 		service.changeMinkyu(minkyu);
 		
-		response.sendRedirect("minsseam?action=detail");
+		response.sendRedirect("minsseam?action=detail&id="+minkyu.getUserid());
 	}
 
 	private void doUpdateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -105,7 +105,9 @@ public class MinkyuController extends HttpServlet {
 
 	private void doRemove(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		response.sendRedirect("list");
+		service.removeMinkyu(id);
+		
+		response.sendRedirect("minsseam?action=list");
 	}
 
 	private void doDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

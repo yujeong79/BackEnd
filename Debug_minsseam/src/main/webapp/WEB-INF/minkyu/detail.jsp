@@ -23,7 +23,14 @@
     </table>
     
     <a href="minsseam?action=updateform&id=${minkyu.userid}">수정</a>
-    <a href="minsseam?action=delete&id${minkyu.userid}">삭제</a>
+    <a href="minsseam?action=delete&id=${minkyu.userid}">삭제</a>
+    
+    <!-- POST 방식으로 변경해보자 -->
+    <%-- <form action="minsseam" method="POST">
+    	<input type="hidden" name="action" value="delete">
+    	<input type="hidden" name="id" value="${minkyu.userid}"> 
+    	<input type="submit" value="삭제">
+    </form> --%>
     <a href="minsseam?action=list">목록</a>
 </body>
 </html>

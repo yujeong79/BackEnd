@@ -141,8 +141,9 @@ public class MinkyuDaoImpl implements MinkyuDao {
 
 	@Override
 	public void deleteMinkyu(int id) {
-		String sql =  "DELETE from minkyu \n"
+		String sql =  "DELETE FROM minkyu \n"
 					+ "WHERE user_id = ?";
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		try {
@@ -151,6 +152,7 @@ public class MinkyuDaoImpl implements MinkyuDao {
 			
 			pstmt.setInt(1, id);
 			pstmt.executeUpdate();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

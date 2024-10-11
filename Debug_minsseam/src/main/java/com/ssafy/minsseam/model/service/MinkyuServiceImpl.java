@@ -39,7 +39,7 @@ public class MinkyuServiceImpl implements MinkyuService {
 
 	@Override
 	public void changeMinkyu(Minkyu minkyu) {
-		registMinkyu(minkyu);
+		dao.updateMinkyu(minkyu);
 	}
 
 	@Override
