@@ -11,6 +11,7 @@ import java.sql.SQLException;
  */
 public class DBUtil {
 	private final String url = "jdbc:mysql://localhost:3306/ssafydb?serverTimezone=UTC";
+<<<<<<< HEAD
 	private final String username = "root";
 	private final String password = "rladbwjd79!";
 	private final String drivername = "com.mysql.cj.jdbc.Driver";
@@ -25,6 +26,21 @@ public class DBUtil {
 	}
 	
 	private static DBUtil instance = new DBUtil();
+=======
+	private final String username = "ssafy";
+	private final String password = "ssafy";
+	private final String drivername = "com.mysql.cj.jdbc.Driver";
+	
+	private static DBUtil instance = new DBUtil();
+	
+	public DBUtil() { // 기본 생성자 안에서 드라이버 로드
+		try {
+			Class.forName(drivername);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+>>>>>>> branch 'main' of https://github.com/yujeong79/BackEnd.git
 	
 	public static DBUtil getInstance() {
 		return instance;
